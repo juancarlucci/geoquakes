@@ -18,6 +18,8 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"></script>
 
     <!-- Custom JS -->
+    <!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="scripts/app.js"></script>
 
     <title>Quake Watch</title>
@@ -26,11 +28,19 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-6">
+            <ul id='magnitudes'></ul>
+            <div id="legend">
+              <p>Magnitudes</p>
+              <p class="legend redMag">Red: 5.5+</p>
+              <p class="legend orangeMag">Orange: 4.6 - 5.4</p>
+              <p class="legend yellowMag">Yellow: 0 - 4.5</p>
+
+            </div>
             <div id="map"></div>
           </div>
           <div class="col-xs-12 col-md-6">
             <div id="info">
-              <h1>Earthquakes from the past week:</h1>
+              <h1>Earthquakes from the past 24 hrs:</h1>
               <!-- <p>M 4.2 - 1km ESE of Fontana, California / 123 hours ago </p> -->
             </div>
           </div>

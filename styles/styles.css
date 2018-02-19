@@ -6,3 +6,99 @@
   height: 600px;
   margin-top: 20px;
 }
+
+#legend {
+   font-family: Arial, sans-serif;
+   background-color: rgba(255, 255, 255, 0.71);
+   color: steelblue;
+   font-size: 12px;
+   text-transform: uppercase;
+   text-align: center;
+   padding: 10px;
+   margin: 10px;
+   border: 3px solid steelblue;
+   dragable:
+ }
+ .legend {
+   border-radius: 10px;
+   color: steelblue;
+   /* display: inline-block; */
+   font-size: 10px;
+   line-height: 1;
+   padding: 3px 5px;
+   text-align: center;
+   vertical-align: middle;
+   white-space: nowrap;
+ }
+ .redMag {
+   background-color: red;
+   color: #fff;
+ }
+ .orangeMag {
+   background-color: orange;
+   color: rgb(224, 225, 227);
+ }
+ .yellowMag {
+   background-color: yellow;
+   color:
+ }
+
+.earthquakes, .earthquakes svg {
+  position: absolute;
+}
+
+.earthquakes svg {
+  width: 60px;
+  height: 20px;
+  padding-right: 100px;
+  font: 10px sans-serif;
+  /* width: 100%;
+  height: 150px;
+  padding-right: 300px;
+  font: 10px sans-serif; */
+}
+
+.earthquakes circle {
+  /* fill: orangered; */
+  stroke: white;
+  stroke-width: .1em;
+}
+div.tooltip {
+  line-height: 1;
+  background: rgba(67, 67, 67, 0.8);
+  color: rgb(185, 185, 185);
+  border-radius: 12px;
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  font: 12px sans-serif;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 1000;
+}
+/* circle {
+    fill: none;
+    stroke-width: 1.5px;
+  } */
+
+.badge {
+  background-color: #666;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-family: "Fascinate Inline", cursive; }
+
+.title {
+  display: inline-block;
+}
+
+.date {
+  /* display: inline-block; */
+}
