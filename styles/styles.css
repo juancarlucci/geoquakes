@@ -1,6 +1,20 @@
+body {
+  color: steelblue;
+  font-family: "Audiowide", sans-serif;
+}
+h1, h2, h3, h4 {
+  font-family: "Fascinate Inline", cursive;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+}
 .container {
   padding-bottom: 50px;
 }
+
+/* *********************** */
+        /* Map and Legend  */
+ /* *********************** */
 
 #map {
   height: 600px;
@@ -8,7 +22,7 @@
 }
 
 #legend {
-   font-family: Arial, sans-serif;
+   font-family: "Audiowide", sans-serif;
    background-color: rgba(255, 255, 255, 0.71);
    color: steelblue;
    font-size: 12px;
@@ -43,6 +57,19 @@
    color:
  }
 
+ /* *********************** */
+         /* Quake list  */
+  /* *********************** */
+
+#info {
+  margin-top: 3em;
+}
+.quake-item {
+  border: 0.25px solid steelblue;
+  border-style: dotted;
+  padding: 13px;
+  text-align: center;
+}
 .earthquakes, .earthquakes svg {
   position: absolute;
 }
@@ -63,6 +90,7 @@
   stroke: white;
   stroke-width: .1em;
 }
+
 div.tooltip {
   line-height: 1;
   background: rgba(67, 67, 67, 0.8);
@@ -83,7 +111,7 @@ div.tooltip {
   } */
 
 .badge {
-  background-color: #666;
+  background-color: #a1c2e3;
   border-radius: 10px;
   color: white;
   display: inline-block;
@@ -93,7 +121,24 @@ div.tooltip {
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
-  font-family: "Fascinate Inline", cursive; }
+
+}
+.magBadge {
+  background-color: darkgrey;
+}
+.magBadgeRed {
+  background-color: red;
+  color: #fff;
+}
+.magBadgeOrange {
+  background-color: orange;
+  color: rgb(224, 225, 227);
+}
+.magBadgeYellow {
+  background-color: yellow;
+
+}
+
 
 .title {
   display: inline-block;

@@ -82,13 +82,41 @@ $(document).ready(function() {
       var elapsedHours = Math.abs(
         (elapsedMili / (1000 * 60 * 60)) % 24
       ).toFixed(0);
-      // console.log(quake.properties);
+
+      var elapsedDays = Math.abs(
+        (elapsedMili / (1000 * 60 * 60 * 24))
+      ).toFixed(0);
+
+
+      console.log(elapsedDays);
       var quakeInstance = `
-      <p class="badge">${i + 1}</p>
-      <p class="title">${placeName}</p>
-      <p class="date">${date}<span class="badge">${elapsedHours} hour and ${elapsedMinutes} minutes ago</span></p>
+      <article class="quake-item">
+        <p class="badge">#${i + 1}</p>
+        <p class="title">${placeName}\u00A0 </p><span class="badge magBadge">magnitude:  ${mag}</span>
+        <p class="date">${date}</p>
+        <p><span class="badge">${elapsedDays}\u00A0 day(s) ${elapsedHours} hour(s) and ${elapsedMinutes} minute(s) ago</span></p>
+      </article>
     `;
+
+    // var magBadgeElement = `
+    // <span class="badge"> ${mag}</span>
+    // `;
+    // function addBadgeClass(mag){
+    //     if (mag > 5.5 ) {
+    //         magBadgeElement.className += " magBadgeRed";
+    //     } else if (mag >= 4.6) {
+    //         magBadgeElement.className += " magBadgeOrange";
+    //     } else {
+    //         magBadgeElement.className += " magBadgeYellow";
+    //     }
+    //     console.log(magBadgeElement);
+    //     $("#info").append(magBadgeElement);
+    //   }
+      // addBadgeClass(mag);
+
       $("#info").append(quakeInstance);
+
+
       let quakeObj = {
         id: placeName + i,
         placeName,
@@ -113,14 +141,6 @@ $(document).ready(function() {
     var map;
     var lat, lng, mag;
 
-    var defaultIcon = {
-      url: "images/earthquake.png",
-      scaledSize: new google.maps.Size(50, 83)
-    };
-    var highlightedIcon = {
-      url: "images/earthquake.png",
-      scaledSize: new google.maps.Size(50, 83)
-    };
 
     function initMap(allQuakes) {
       map = new google.maps.Map(d3.select("#map").node(), {
@@ -191,7 +211,7 @@ $(document).ready(function() {
         marker
           .append("circle")
           .attr("r", function(d) {
-            return Math.pow(1.5, d.value.mag);
+            return Math.pow(1.345, d.value.mag);
           })
           .attr("cx", padding)
           .attr("cy", padding)
