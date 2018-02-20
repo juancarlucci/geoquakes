@@ -1,9 +1,16 @@
+$color1: #29425d;
+$color2: rgba(255, 243, 176, 1);
+$color3: rgba(224, 159, 62, 1);
+$color4: rgba(158, 42, 43, 1);
+$color5: rgba(84, 11, 14, 1);
+
 body {
-  color: steelblue;
+  color: #29425d;
   font-family: "Audiowide", sans-serif;
 }
 h1, h2, h3, h4 {
   font-family: "Fascinate Inline", cursive;
+  color: #29425d;
   text-transform: uppercase;
   text-align: center;
   vertical-align: middle;
@@ -24,38 +31,54 @@ h1, h2, h3, h4 {
 #legend {
    font-family: "Audiowide", sans-serif;
    background-color: rgba(255, 255, 255, 0.71);
-   color: steelblue;
-   font-size: 12px;
+   color: #29425d;
+   font-size: 15px;
    text-transform: uppercase;
    text-align: center;
    padding: 10px;
    margin: 10px;
-   border: 3px solid steelblue;
-   dragable:
+   border: 3px solid #29425d;
+
  }
  .legend {
    border-radius: 10px;
-   color: steelblue;
-   /* display: inline-block; */
-   font-size: 10px;
+   color: #29425d;
+   display: inline-block;
+   font-size: 15px;
    line-height: 1;
    padding: 3px 5px;
    text-align: center;
    vertical-align: middle;
    white-space: nowrap;
  }
- .redMag {
-   background-color: red;
-   color: #fff;
- }
- .orangeMag {
-   background-color: orange;
-   color: rgb(224, 225, 227);
- }
- .yellowMag {
-   background-color: yellow;
-   color:
- }
+
+ .legend::before{
+   content: '';
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   -moz-border-radius: 7.5px;
+   -webkit-border-radius: 7.5px;
+   border-radius: 7.5px;
+   border: 1px solid white;
+
+}
+
+.redMag::before {
+  background-color: rgba(158, 42, 43, 1);
+  margin-right: 6px;
+}
+
+.orangeMag::before {
+  background-color: rgba(224, 159, 62, 1);
+  margin-right: 6px;
+}
+
+.yellowMag::before {
+  background-color: rgba(255, 243, 176, 1);
+  margin-right: 6px;
+}
+
 
  /* *********************** */
          /* Quake list  */
@@ -65,7 +88,7 @@ h1, h2, h3, h4 {
   margin-top: 3em;
 }
 .quake-item {
-  border: 0.25px solid steelblue;
+  border: 0.25px solid #29425d;
   border-style: dotted;
   padding: 13px;
   text-align: center;
@@ -111,7 +134,7 @@ div.tooltip {
   } */
 
 .badge {
-  background-color: #a1c2e3;
+  background-color: #29425d;
   border-radius: 10px;
   color: white;
   display: inline-block;
@@ -125,25 +148,20 @@ div.tooltip {
 }
 .magBadge {
   background-color: darkgrey;
+
 }
 .magBadgeRed {
-  background-color: red;
-  color: #fff;
+  background-color: rgba(158, 42, 43, 1);
+  font-size: 2em;
+  margin-left: .6em;
 }
 .magBadgeOrange {
-  background-color: orange;
-  color: rgb(224, 225, 227);
+  background-color: rgba(224, 159, 62, 1);
+  font-size: 2em;
+  margin-left: .6em;
 }
 .magBadgeYellow {
-  background-color: yellow;
-
-}
-
-
-.title {
-  display: inline-block;
-}
-
-.date {
-  /* display: inline-block; */
+  background-color: rgba(255, 243, 176, 1);
+  font-size: 2em;
+  margin-left: .6em;
 }

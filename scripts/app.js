@@ -89,32 +89,55 @@ $(document).ready(function() {
 
 
       console.log(elapsedDays);
-      var quakeInstance = `
-      <article class="quake-item">
-        <p class="badge">#${i + 1}</p>
-        <p class="title">${placeName}\u00A0 </p><span class="badge magBadge">magnitude:  ${mag}</span>
-        <p class="date">${date}</p>
-        <p><span class="badge">${elapsedDays}\u00A0 day(s) ${elapsedHours} hour(s) and ${elapsedMinutes} minute(s) ago</span></p>
-      </article>
-    `;
+    //   var quakeInstance = `
+    //   <article class="quake-item">
+    //     <p class="badge">#${i + 1}</p>
+    //     <p class="title">${placeName}\u00A0 </p><span class="badge magBadge"></span>
+    //     <p class="date">${date}</p>
+    //     <p><span class="badge">${elapsedDays}\u00A0 day(s) ${elapsedHours} hour(s) and ${elapsedMinutes} minute(s) ago</span></p>
+    //   </article>
+    // `;
 
-    // var magBadgeElement = `
+    var magBadgeElement;
+    //  = `
     // <span class="badge"> ${mag}</span>
     // `;
-    // function addBadgeClass(mag){
-    //     if (mag > 5.5 ) {
-    //         magBadgeElement.className += " magBadgeRed";
-    //     } else if (mag >= 4.6) {
-    //         magBadgeElement.className += " magBadgeOrange";
-    //     } else {
-    //         magBadgeElement.className += " magBadgeYellow";
-    //     }
-    //     console.log(magBadgeElement);
-    //     $("#info").append(magBadgeElement);
-    //   }
-      // addBadgeClass(mag);
+    function addBadgeClass(mag){
+      let $info = $("#info").append(magBadgeElement);
+        if (mag > 5.5 ) {
+            magBadgeElement = `
+            <article class="quake-item">
+              <p class="badge">#${i + 1}</p>
+              <p class="title">${placeName}\u00A0 </p><span class="badge magBadgeRed">${mag}</span>
+              <p><span class="badge">${elapsedDays}\u00A0 day(s) ${elapsedHours} hour(s) and ${elapsedMinutes} minute(s) ago</span></p>
+            </article>
+            `;
+            $info.append(magBadgeElement);
+        } else if (mag >= 4.6) {
+          magBadgeElement = `
+          <article class="quake-item">
+            <p class="badge">#${i + 1}</p>
+            <p class="title">${placeName}\u00A0<span class="badge magBadgeOrange">${mag}</span></p>
+            <p><span class="badge">${elapsedDays}\u00A0 day(s) ${elapsedHours} hour(s) and ${elapsedMinutes} minute(s) ago</span></p>
+          </article>
+          `;
+            $info.append(magBadgeElement);
+        } else {
+          magBadgeElement = `
+          <article class="quake-item">
+            <p class="badge">#${i + 1}</p>
+            <p class="title">${placeName}\u00A0 </p><span class="badge magBadgeYellow">${mag}</span>
+            <p><span class="badge">${elapsedDays}\u00A0 day(s) ${elapsedHours} hour(s) and ${elapsedMinutes} minute(s) ago</span></p>
+          </article>
+          `;
+            $info.append(magBadgeElement);
+        }
+        console.log(magBadgeElement);
+        // $("#info").append(magBadgeElement);
+      }
+      addBadgeClass(mag);
 
-      $("#info").append(quakeInstance);
+      // $("#info").append(quakeInstance);
 
 
       let quakeObj = {
@@ -148,26 +171,17 @@ $(document).ready(function() {
         center: { lat: 0.78, lng: 130.44 },
         // zoom: 2
         zoom: 3,
+        styles: styles,
         // center: new google.maps.LatLng(37.76487, -122.41948),
         mapTypeId: google.maps.MapTypeId.SATELITE
       });
 
-      // var legend = document.getElementById('legend');
-      //    // for (var key in allQuakes) {
-      //      // var type = icons[key];
-      //      var name = "Eathquakes";
-      //      // var icon = type.icon;
-      //      var div = document.createElement('div');
-      //      div.innerHTML =   "Magnitudes 2-9.0";
-      //      legend.appendChild(div);
-      //    // }
-      //
-      //    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-      //
+
       map.controls[google.maps.ControlPosition.RIGHT_TOP].push(
         document.getElementById("legend")
       );
     } //end map
+
     initMap(allQuakes);
 
     var data = allQuakes;
@@ -202,11 +216,7 @@ $(document).ready(function() {
           .attr("class", "tooltip")
           .style("opacity", 0);
 
-        // var matrix = this.getScreenCTM()
-        //   .translate(+this.getAttribute("cx"),+this.getAttribute("cy"));
-        // tooltip.style("left", (window.pageXOffset + matrix.e) + "px")
-        // .style("top", (window.pageYOffset + matrix.f + 30) + "px");
-
+  
         // Add a circle.
         marker
           .append("circle")
@@ -217,11 +227,11 @@ $(document).ready(function() {
           .attr("cy", padding)
           .attr("fill", function(d) {
             if (d.value.mag > 5.5) {
-              return "red";
+              return "rgba(158, 42, 43, 1)";
             } else if (d.value.mag >= 4.6) {
-              return "orange";
+              return "rgba(224, 159, 62, 1)";
             }
-            return "yellow";
+            return "rgba(255, 243, 176, 1)";
           });
         // .on("mouseover", function(){return tooltip.style("visibility", "visible");})
         // .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
@@ -303,4 +313,114 @@ $(document).ready(function() {
     // Bind our overlay to the map…
     overlay.setMap(map);
   } //end setUpMap
+
+  var styles = [{
+	"elementType": "labels.text.fill",
+	"stylers": [{
+		"visibility": "on"
+	}, {
+		"saturation": -76
+	}, {
+		"color": "540B0E"
+	}, {
+		"weight": 0.1
+	}]
+}, {
+	"featureType": "landscape.natural",
+	"stylers": [{
+			"visibility": "on"
+		}, {
+			"saturation": -28
+		},
+		// { "color": "#32302f" },
+		{
+			"color": "#e5e3df"
+		}
+	]
+}, {
+	"featureType": "poi",
+	"stylers": [{
+			"visibility": "on"
+		},
+		// { "color": "#808080" },
+		{
+			"color": "#e5e3df"
+		}
+	]
+}, {
+	"elementType": "labels.text.stroke",
+	"stylers": [{
+		"weight": 0.5
+	}, {
+		"saturation": -71
+	}, {
+		"color": "540B0E"
+	}]
+}, {
+	"featureType": "road",
+	"elementType": "geometry",
+	"stylers": [{
+    "visibility": "off",
+		"color": "#ffffff"
+	}]
+}, {
+	"featureType": "landscape",
+	"stylers": [{
+		"visibility": "on"
+	}, {
+		"color": "#e5e3df"
+	}]
+}, {
+	"featureType": "landscape",
+	"elementType": "geometry",
+	"stylers": [{
+		"hue": "#e3e3e3"
+	}, {
+		"saturation": -100
+	}, {
+		"lightness": 0
+	}, {
+		"visibility": "on"
+	}]
+}, {
+	"featureType": "water",
+	"elementType": "all",
+	"stylers": [{
+		"color": "#29425d"
+    }]
+	}, {
+		"visibility": "on"
+	}, {
+    "featureType": "transit",
+    "elementType": "geometry",
+    "stylers": [{  "visibility": "off"}]
+  }
+]; //end map styles
+
+var simpleMapStyle = [{
+        'featureType': 'all',
+        'elementType': 'all',
+        'stylers': [{'visibility': 'off'}]
+      }, {
+        'featureType': 'landscape',
+        'elementType': 'geometry',
+        'stylers': [{'visibility': 'on'}, {'color': '#fcfcfc'}]
+      }, {
+        'featureType': 'water',
+        'elementType': 'labels',
+        'stylers': [{'visibility': 'off'}]
+      },
+      // {
+      //   'featureType': 'water',
+      //   'elementType': 'geometry',
+      //   'stylers': [{'visibility': 'on'}, {'hue': '#29425d'}]
+      // },
+      {
+      	"featureType": "water",
+      	'elementType': 'geometry',
+      	"stylers": [{'visibility': 'on'}, {"color": "#335C67"}]
+    }
+    ];
+
+
 }); //end docuemnt ready
