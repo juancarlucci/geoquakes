@@ -88,7 +88,7 @@ $(document).ready(function() {
       ).toFixed(0);
 
 
-      console.log(elapsedDays);
+      // console.log(elapsedDays);
     //   var quakeInstance = `
     //   <article class="quake-item">
     //     <p class="badge">#${i + 1}</p>
@@ -132,7 +132,7 @@ $(document).ready(function() {
           `;
             $info.append(magBadgeElement);
         }
-        console.log(magBadgeElement);
+        // console.log(magBadgeElement);
         // $("#info").append(magBadgeElement);
       }
       addBadgeClass(mag);
@@ -167,14 +167,31 @@ $(document).ready(function() {
 
     function initMap(allQuakes) {
       map = new google.maps.Map(d3.select("#map").node(), {
-        // map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 0.78, lng: 130.44 },
-        // zoom: 2
         zoom: 3,
         styles: styles,
-        // center: new google.maps.LatLng(37.76487, -122.41948),
         mapTypeId: google.maps.MapTypeId.SATELITE
       });
+
+      // Construct the circle for each value in quakeSpots.
+      //   Note: We scale the area of the circle based on the population.
+        // allQuakes.forEach(function(quake, i) {
+        //   // Add the circle for this city to the map.
+        //   var cityCircle = new google.maps.Circle({
+        //     strokeColor: '#FFF',
+        //     strokeOpacity: 0.8,
+        //     strokeWeight: .75,
+        //     // fillColor: '#FF0000',
+        //     fillOpacity: 0,
+        //     map: map,
+        //     center: allQuakes[i].center,
+        //     // radius: getCircleMag(allQuakes[i].place.mag)
+        //     // radius: Math.pow(2, allQuakes[i].place.mag) / 2
+        //     radius: Math.sqrt(allQuakes[i].mag) * 100000
+        //     // position: allQuakes[i].place.center
+        //   });
+        //   // console.log(allQuakes[i].place.center);
+        // }); //end allQuakes.forEach
 
 
       map.controls[google.maps.ControlPosition.RIGHT_TOP].push(
@@ -210,21 +227,21 @@ $(document).ready(function() {
 
         //add tooltip
         // Define the div for the tooltip
-        var tooltip = d3
-          .select("map")
-          .append("div")
-          .attr("class", "tooltip")
-          .style("opacity", 0);
+        // var tooltip = d3
+        //   .select("map")
+        //   .append("div")
+        //   .attr("class", "tooltip")
+        //   .style("opacity", 0);
 
-  
+
         // Add a circle.
-        marker
-          .append("circle")
+        let circle = marker.append("circle")
           .attr("r", function(d) {
             return Math.pow(1.345, d.value.mag);
           })
           .attr("cx", padding)
           .attr("cy", padding)
+          .attr("stroke-width", 20)
           .attr("fill", function(d) {
             if (d.value.mag > 5.5) {
               return "rgba(158, 42, 43, 1)";
@@ -232,7 +249,11 @@ $(document).ready(function() {
               return "rgba(224, 159, 62, 1)";
             }
             return "rgba(255, 243, 176, 1)";
+          })
+          .on("click", function(d){
+            console.log(d.value.placeName);
           });
+
         // .on("mouseover", function(){return tooltip.style("visibility", "visible");})
         // .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
         // .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
@@ -267,6 +288,32 @@ $(document).ready(function() {
         //   tooltip.transition().duration(500).style("opacity", 0);
         // });
 
+        //Inspired by http://bl.ocks.org/chiester/11267307
+    		// function pulse() {
+    		// 	var circle = marker.select("circle");
+    		// 	(function repeat() {
+    		// 		circle = circle.transition()
+    		// 			.duration(2000)
+    		// 			.attr("stroke-width", 20)
+    		// 			// .attr("r", 10)
+    		// 			.transition()
+    		// 			.duration(2000)
+    		// 			.attr('stroke-width', 0.5)
+    		// 			// .attr("r", 20)
+    		// 			// .ease('sine')
+    		// 			.each("end", repeat);
+    		// 	})();
+        // }
+        // circle.transition()
+        //   .duration(5500)
+        //   .delay(function(d) {
+    		// 		 return d.value.elapsedMili/5000;
+    		// 	 })
+        //    .attr("r", function(d) {
+        //      return Math.pow(1.345, d.value.mag);
+        //    });
+
+
         // Add a label.
         marker
           .append("text")
@@ -298,8 +345,6 @@ $(document).ready(function() {
           });
 
         function transform(d) {
-          // d = new google.maps.LatLng(d.value.value[1], d.value.value[0]);
-          // console.log("d", d.value.mag,"d.value.lat", d);
           d = new google.maps.LatLng(d.value.lat, d.value.lng);
           d = projection.fromLatLngToDivPixel(d);
           return d3
@@ -307,6 +352,7 @@ $(document).ready(function() {
             .style("left", d.x - padding + "px")
             .style("top", d.y - padding + "px");
         }
+
       };
     };
 

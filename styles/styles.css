@@ -165,3 +165,20 @@ div.tooltip {
   font-size: 2em;
   margin-left: .6em;
 }
+
+
+/* ////////// */
+/*   ANIMATIONS   */
+/* ////////// */
+
+@-webkit-keyframes pulse
+   {
+     0% {-webkit-transform: scale(1.0); opacity: 1;}
+     100% {-webkit-transform: scale(2); opacity: 0;}
+   }
+
+   .pulse
+   {
+     /* Giving Animation Function */
+     -webkit-animation: pulse 2s linear infinite;
+   }
